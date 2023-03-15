@@ -86,8 +86,8 @@ hua-wei-obs:
   secret-key: you-secret-key
 jwt:
   signing-key: 41beddad-d7f0-402e-b69f-2e07289ccd1c
-  expires-time: 7d
-  buffer-time: 1d
+  expires-time: 365d
+  buffer-time: 0d
   issuer: qmPlus
 local:
   path: uploads/file

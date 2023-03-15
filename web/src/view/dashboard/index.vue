@@ -39,7 +39,7 @@
       </el-card>
     <!-- <div class="quick-entrance-title"></div> -->
     </div>
-    <div class="gva-card-box">
+    <!-- <div class="gva-card-box">
       <div class="gva-card">
         <div class="card-header">
           <span>数据统计</span>
@@ -55,7 +55,7 @@
           </el-row>
         </div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -103,13 +103,6 @@ const toolCards = ref([
     name: 'formCreate',
     color: '#ff85c0',
     bg: 'rgba(255, 133, 192,.3)'
-  },
-  {
-    label: '关于我们',
-    icon: 'user',
-    name: 'about',
-    color: '#5cdbd3',
-    bg: 'rgba(92, 219, 211,.3)'
   }
 ])
 

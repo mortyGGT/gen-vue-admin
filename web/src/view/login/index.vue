@@ -5,10 +5,10 @@
         <div class="login_panel_form_title">
           <img
             class="login_panel_form_title_logo"
-            :src="$GIN_VUE_ADMIN.appLogo"
+            src="@/assets/logo.png"
             alt
           >
-          <p class="login_panel_form_title_p">{{ $GIN_VUE_ADMIN.appName }}</p>
+          <!-- <p class="login_panel_form_title_p">{{ $GIN_VUE_ADMIN.appName }}</p> -->
         </div>
         <el-form
           ref="loginForm"
@@ -34,7 +34,7 @@
               placeholder="请输入密码"
             />
           </el-form-item>
-          <!-- <el-form-item v-if="loginFormData.openCaptcha" prop="captcha">
+          <el-form-item v-if="loginFormData.openCaptcha" prop="captcha">
             <div class="vPicBox">
               <el-input
                 v-model="loginFormData.captcha"
@@ -51,7 +51,7 @@
                 >
               </div>
             </div>
-          </el-form-item> -->
+          </el-form-item>
           <el-form-item>
             <el-button
               type="primary"
@@ -67,29 +67,6 @@
             >登 录</el-button>
           </el-form-item>
         </el-form>
-      </div>
-      <div class="login_panel_right" />
-      <div class="login_panel_foot">
-        <div class="links">
-          <a href="http://doc.henrongyi.top/" target="_blank">
-            <img src="@/assets/docs.png" class="link-icon" alt="文档">
-          </a>
-          <a href="https://support.qq.com/product/371961" target="_blank">
-            <img src="@/assets/kefu.png" class="link-icon" alt="客服">
-          </a>
-          <a
-            href="https://github.com/flipped-aurora/gin-vue-admin"
-            target="_blank"
-          >
-            <img src="@/assets/github.png" class="link-icon" alt="github">
-          </a>
-          <a href="https://space.bilibili.com/322210472" target="_blank">
-            <img src="@/assets/video.png" class="link-icon" alt="视频站">
-          </a>
-        </div>
-        <div class="copyright">
-          <BottomInfo />
-        </div>
       </div>
     </div>
   </div>
@@ -127,20 +104,20 @@ const checkPassword = (rule, value, callback) => {
 }
 
 // 获取验证码
-// const loginVerify = () => {
-//   captcha({}).then(async(ele) => {
-//     rules.captcha.push({
-//       max: ele.data.captchaLength,
-//       min: ele.data.captchaLength,
-//       message: `请输入${ele.data.captchaLength}位验证码`,
-//       trigger: 'blur',
-//     })
-//     picPath.value = ele.data.picPath
-//     // loginFormData.captchaId = ele.data.captchaId
-//     // loginFormData.openCaptcha = ele.data.openCaptcha
-//   })
-// }
-// loginVerify()
+const loginVerify = () => {
+  captcha({}).then(async(ele) => {
+    rules.captcha.push({
+      max: ele.data.captchaLength,
+      min: ele.data.captchaLength,
+      message: `请输入${ele.data.captchaLength}位验证码`,
+      trigger: 'blur',
+    })
+    picPath.value = ele.data.picPath
+    loginFormData.captchaId = ele.data.captchaId
+    loginFormData.openCaptcha = ele.data.openCaptcha
+  })
+}
+loginVerify()
 
 // 登录相关操作
 const loginForm = ref(null)
@@ -150,17 +127,17 @@ const loginFormData = reactive({
   password: '123456',
   captcha: '',
   captchaId: '',
-  openCaptcha: false,
+  openCaptcha: true,
 })
 const rules = reactive({
   username: [{ validator: checkUsername, trigger: 'blur' }],
   password: [{ validator: checkPassword, trigger: 'blur' }],
-  // captcha: [
-  //   {
-  //     message: '验证码格式不正确',
-  //     trigger: 'blur',
-  //   },
-  // ],
+  captcha: [
+    {
+      message: '验证码格式不正确',
+      trigger: 'blur',
+    },
+  ],
 })
 
 const userStore = useUserStore()
